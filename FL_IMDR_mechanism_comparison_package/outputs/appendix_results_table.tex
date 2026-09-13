@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\caption{Counterfactual mechanism comparison on the original manuscript-sized market ($N=100$, $M=4$, $T=120$). Values are means over the final ten rounds, reported as mean $\pm$ standard deviation across paired market seeds. The override residual measures direct displacement of decentralized insurer offers and patient best responses; lower values indicate narrower intervention authority.}
+\label{tab:mechanism_numerical_comparison}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lccccccc}
+\toprule
+Mechanism & Insured (\%) & Eff. premium (\$) & Coverage & Profit/insurer (\$) & Subsidy (\$) & HHI & Override residual \\
+\midrule
+Central welfare & 99.74 $\pm$ 0.43 & 220.47 $\pm$ 1.53 & 0.785 $\pm$ 0.002 & 1261.2 $\pm$ 6.0 & 166.0 $\pm$ 47.4 & 0.391 $\pm$ 0.022 & 0.327 $\pm$ 0.029 \\
+Bayesian direct & 71.09 $\pm$ 2.27 & 214.75 $\pm$ 1.56 & 0.793 $\pm$ 0.002 & 1026.8 $\pm$ 32.7 & 0.0 $\pm$ 0.0 & 0.742 $\pm$ 0.051 & 0.347 $\pm$ 0.030 \\
+\textbf{FL-IMDR} & 98.22 $\pm$ 1.17 & 219.37 $\pm$ 1.41 & 0.757 $\pm$ 0.004 & 1662.7 $\pm$ 20.7 & 645.4 $\pm$ 62.3 & 0.522 $\pm$ 0.034 & 0.000 $\pm$ 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table*}
