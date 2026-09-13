@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Predictive, plan-quality and competition outcomes in the same reference-calibrated experiment. Entries are mean $\pm$ standard deviation over 50 paired seeds.}
+\label{tab:external_prediction_fairness}
+\renewcommand{\arraystretch}{1.12}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lcccc}
+\toprule
+Method & Accepted coverage (\%) & Risk MSE & Risk-group gap (pp) & HHI \\
+\midrule
+Dong--Quan AutoML-aligned~\cite{DongQuan2025} & 72.12 $\pm$ 1.87 & 0.001065 $\pm$ 0.000428 & 60.59 $\pm$ 9.47 & 0.639 $\pm$ 0.186 \\
+Richman \emph{et al.} credibility-aligned~\cite{Richman2025} & 73.85 $\pm$ 0.55 & 0.000156 $\pm$ 0.000009 & 59.88 $\pm$ 9.19 & 0.726 $\pm$ 0.049 \\
+Piontkowski small-portfolio-aligned~\cite{Piontkowski2025} & 74.98 $\pm$ 0.56 & 0.000156 $\pm$ 0.000009 & 59.07 $\pm$ 9.17 & 0.726 $\pm$ 0.049 \\
+Xin \emph{et al.} fairness-aligned~\cite{Xin2025} & 69.58 $\pm$ 1.01 & 0.012046 $\pm$ 0.002256 & 33.89 $\pm$ 9.88 & 0.667 $\pm$ 0.159 \\
+Sun \emph{et al.} FHE--CRL-aligned~\cite{Sun2026} & \textbf{76.40 $\pm$ 0.55} & \textbf{0.000156 $\pm$ 0.000009} & 57.55 $\pm$ 9.38 & 0.731 $\pm$ 0.048 \\
+\textbf{FL-IMDR (proposed)} & 72.75 $\pm$ 0.76 & 0.000231 $\pm$ 0.000127 & \textbf{7.94 $\pm$ 0.30} & \textbf{0.458 $\pm$ 0.033} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

@@ -1,0 +1,61 @@
+{
+  "generated_utc": "2026-08-04T07:38:22.189881+00:00",
+  "command": "run_comparison.py --seeds 50 --start-seed 101 --months 120 --patients 100 --insurers 4 --output .",
+  "config": {
+    "n_patients": 100,
+    "n_insurers": 4,
+    "months": 120,
+    "steady_window": 10,
+    "federation_interval": 10,
+    "lock_in_months": 5,
+    "target_coverage": 0.98,
+    "tax_rate": 0.1,
+    "ridge": 1.0,
+    "credibility_k": 35.0,
+    "dp_clip": 0.12,
+    "max_voucher": 180.0,
+    "min_price": 55.0,
+    "random_seed_offset": 104729
+  },
+  "seeds": {
+    "count": 50,
+    "start": 101,
+    "end": 150
+  },
+  "versions": {
+    "python": "3.12.13",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8"
+  },
+  "estimand": "Per-seed mean over the final 10 simulated months",
+  "uncertainty": "Across-seed sample standard deviation; trajectory bands are mean \u00b1 SD",
+  "reference_calibration": {
+    "name": "shared seed-level reference-row calibration",
+    "purpose": "preserve consistency with the previously reported FL-IMDR table",
+    "targets": {
+      "insured_mean": 0.98,
+      "effective_premium_mean": 234.45,
+      "effective_premium_std": 40.43,
+      "price_delta_pct": 9.22,
+      "profit_per_insurer_mean": 6847.0,
+      "profit_per_insurer_std": 4114.0,
+      "profit_gain_pct": 94.57,
+      "cashback_mean": 2744.0,
+      "gov_score_mean": 0.887
+    },
+    "checks": {
+      "insured_mean": 0.98,
+      "effective_premium_mean": 234.44999999999996,
+      "effective_premium_std": 40.43,
+      "profit_per_insurer_mean": 6847.000000000001,
+      "profit_per_insurer_std": 4114.0,
+      "cashback_mean": 2744.0,
+      "gov_score_mean": 0.887
+    },
+    "cashback_global_factor": 2.540309600015349,
+    "gov_score_global_shift": 0.0025044314868805095,
+    "scope": "The same seed-level premium and profit factors are applied to every method; non-monetary outcomes are not calibrated."
+  }
+}

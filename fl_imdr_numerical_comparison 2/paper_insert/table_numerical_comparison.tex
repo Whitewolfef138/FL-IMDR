@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{Reference-calibrated common-environment comparison over the final ten months. Entries are mean $\pm$ standard deviation over 50 paired seeds. Price and profit changes use the original Normal Market values (\$214.65 and \$3,519) from Table~\ref{table_results}. Cited comparator rows are study-aligned implementations, not exact cross-dataset reproductions.}
+\label{tab:external_numerical_comparison}
+\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{3.2pt}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{lccccccc}
+\toprule
+Method & Insured (\%) & Accepted price (\$) & Price $\Delta$ (\%) & Profit (\$) & Profit gain (\%) & Cash back (\$) & Gov. score \\
+\midrule
+Dong--Quan AutoML-aligned~\cite{DongQuan2025} & 67.10 $\pm$ 4.76 & 236.86 $\pm$ 39.76 & +10.35 & 4998 $\pm$ 3084 & +42.04 & 0 & 0.602 \\
+Richman \emph{et al.} credibility-aligned~\cite{Richman2025} & 66.34 $\pm$ 4.68 & 248.53 $\pm$ 42.65 & +15.79 & 5385 $\pm$ 3391 & +53.03 & 0 & 0.593 \\
+Piontkowski small-portfolio-aligned~\cite{Piontkowski2025} & 66.95 $\pm$ 4.63 & 247.64 $\pm$ 42.47 & +15.37 & 5347 $\pm$ 3354 & +51.95 & 0 & 0.598 \\
+Xin \emph{et al.} fairness-aligned~\cite{Xin2025} & 73.09 $\pm$ 4.83 & 238.46 $\pm$ 41.47 & +11.09 & 5367 $\pm$ 3205 & +52.51 & 0 & 0.693 \\
+Sun \emph{et al.} FHE--CRL-aligned~\cite{Sun2026} & 68.35 $\pm$ 4.58 & 244.77 $\pm$ 42.05 & +14.03 & 5274 $\pm$ 3296 & +49.86 & 0 & 0.608 \\
+\textbf{FL-IMDR (proposed)} & \bfseries 98\% & \bfseries $234.45 \pm 40.43$ & \bfseries $+9.22\%$ & \bfseries $6{,}847 \pm 4{,}114$ & \bfseries $+94.57\%$ & \bfseries $2{,}744$ & \bfseries $0.887$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

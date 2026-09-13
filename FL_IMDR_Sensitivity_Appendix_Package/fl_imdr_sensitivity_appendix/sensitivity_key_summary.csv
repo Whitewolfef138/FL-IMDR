@@ -1,0 +1,7 @@
+parameter,symbol,description,baseline,tested_min,tested_max,most_sensitive_metric,metric_label,max_abs_elasticity,low_endpoint_change_pct,high_endpoint_change_pct
+tau,$\\tau$,Tax/cash-back rate,0.1,0.05,0.15,coverage_disparity,Risk-group coverage disparity,0.4387568555758678,-21.937842778793392,1.8281535648994598
+coverage_target,$\\eth_{\\mathrm{target}}$,Coverage target,0.9,0.8,0.98,coverage_disparity,Risk-group coverage disparity,6.375685557586838,8.775137111517374,-56.67276051188296
+fl_interval,$K$,Federation interval,10.0,2.0,30.0,subsidy_per_patient,Subsidy per patient,1.8652733677477498,-100.0,-100.0
+dp_sigma,$\\sigma_{\\mathrm{DP}}$,DP noise scale,0.05,0.0,0.1,risk_mse,Risk-prediction MSE,2.0562668656650502,-88.75245839368401,205.62668656650507
+imitation_weight,$\\omega_{\\mathrm{imit}}$,Imitation weight,1.0,0.0,2.0,coverage_disparity,Risk-group coverage disparity,0.018281535648994596,0.0,1.8281535648994598
+gap_beta,$\\beta_g$,Coverage-gap gain,3.0,1.0,5.0,coverage_disparity,Risk-group coverage disparity,0.21937842778793398,-14.625228519195602,1.8281535648994598

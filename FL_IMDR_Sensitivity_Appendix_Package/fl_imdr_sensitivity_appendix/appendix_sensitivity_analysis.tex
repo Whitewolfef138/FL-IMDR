@@ -1,0 +1,66 @@
+\section{Sensitivity Analysis over Key Parameters}
+\label{app:sensitivity}
+
+A one-at-a-time sensitivity analysis was conducted for the six active parameters listed in Table~\ref{tab:sensitivity_ranges}. Each configuration was simulated for $120$ market rounds using $30$ common random seeds, while all parameters other than the parameter under examination were fixed at their baseline values. The reported values are means over the final ten rounds and are shown as mean $\pm$ standard deviation. This experiment evaluates local robustness of the simulated FL-IMDR market and is not intended as real-world external validation.
+
+For an output metric $m$ and parameter $q$ with baseline values $m_0$ and $q_0$, the normalized sensitivity is summarized using
+\begin{equation}
+\label{eq:sensitivity_elasticity}
+E_{m,q}(q)=
+\frac{\bigl(m(q)-m_0\bigr)/m_0}
+     {\bigl(q-q_0\bigr)/q_0}.
+\end{equation}
+The quantity $|E_{m,q}|<1$ indicates that the relative output change is smaller than the relative parameter perturbation, whereas $|E_{m,q}|>1$ identifies a comparatively sensitive response. The numerical implementation uses the gap-amplification parameter $\beta_g$ through
+\begin{equation}
+\gamma_t(\beta_g)=
+\left(1+\beta_g
+\frac{\max(0,\eth_{\mathrm{target}}-\eth_t)}
+     {\eth_{\mathrm{target}}}\right)^2,
+\end{equation}
+with baseline $\beta_g=3$.
+
+\input{Appendix/sensitivity_parameter_ranges.tex}
+
+Figures~\ref{fig:sensitivity_insured}--\ref{fig:sensitivity_hhi} show that the market-level outcomes are comparatively stable under changes in $\tau$, $\omega_{\mathrm{imit}}$, and $\beta_g$, while the learning outcomes are more sensitive to $K$ and $\sigma_{\mathrm{DP}}$. Increasing $\eth_{\mathrm{target}}$ from $0.80$ to $0.98$ increased the steady-state insured population from $96.17\%$ to $99.08\%$ and reduced the risk-group coverage disparity from $0.079$ to $0.032$. The effective premium simultaneously decreased from $170.81$ to $158.68$, because the stronger target activated more regulatory assistance.
+
+The strongest learning sensitivity was observed for the privacy perturbation. Increasing $\sigma_{\mathrm{DP}}$ from $0$ to $0.10$ increased the final risk MSE from $0.0013\pm0.0007$ to $0.0362\pm0.0305$ and increased HHI from $0.487\pm0.067$ to $0.533\pm0.068$. Both changes were significant relative to the baseline $\sigma_{\mathrm{DP}}=0.05$ after paired Wilcoxon testing and Holm correction for the corresponding comparisons. The federation interval produced a non-monotone response: $K=2$ repeatedly injected DP noise and gave MSE $0.0240\pm0.0160$, whereas $K=20$ limited information sharing and gave MSE $0.0275\pm0.0309$, compared with $0.0119\pm0.0111$ at $K=10$. This indicates that neither excessively frequent nor excessively sparse federation is uniformly preferable in the dynamic market.
+
+The tax rate and gap-response gain mainly affected affordability rather than predictive accuracy. Increasing $\tau$ from $0.05$ to $0.15$ reduced the effective premium from $165.14$ to $159.15$, while increasing $\beta_g$ from $1$ to $5$ reduced it from $163.63$ to $156.16$. In contrast, varying $\omega_{\mathrm{imit}}$ over $[0,2]$ changed the principal metrics only slightly, indicating that the reported behavior is not driven by a narrowly tuned imitation coefficient. Table~\ref{tab:sensitivity_key} and Fig.~\ref{fig:sensitivity_elasticity} summarize the dominant responses, while Tables~\ref{tab:sensitivity_regulator} and~\ref{tab:sensitivity_learning} report all tested configurations.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{Figures/sensitivity_insured_percentage.pdf}
+\caption{Steady-state insured percentage under one-at-a-time parameter variations. Error bars denote $95\%$ confidence intervals over $30$ common seeds, and the dashed line marks the baseline parameter value.}
+\label{fig:sensitivity_insured}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{Figures/sensitivity_effective_premium.pdf}
+\caption{Sensitivity of the accepted effective premium. Stronger regulatory targets, taxation, and coverage-gap response generally reduce the patient-paid premium.}
+\label{fig:sensitivity_premium}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{Figures/sensitivity_risk_mse.pdf}
+\caption{Sensitivity of final risk-prediction MSE. The logarithmic scale highlights the stronger dependence on the DP noise level and federation interval.}
+\label{fig:sensitivity_mse}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{Figures/sensitivity_hhi.pdf}
+\caption{Sensitivity of market concentration measured by the Herfindahl--Hirschman index.}
+\label{fig:sensitivity_hhi}
+\end{figure}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{Figures/sensitivity_elasticity_heatmap.pdf}
+\caption{Maximum absolute normalized elasticity in~\eqref{eq:sensitivity_elasticity} over the tested non-baseline values. The cell labels report $\max |E_{m,q}|$; the displayed intensity uses $\log_{10}(1+\max|E_{m,q}|)$ only for visual scaling.}
+\label{fig:sensitivity_elasticity}
+\end{figure*}
+
+\input{Appendix/sensitivity_key_table.tex}
+\input{Appendix/sensitivity_detailed_tables.tex}

@@ -1,0 +1,110 @@
+\subsection{Reference-Calibrated Comparison With Cited Study-Aligned Methods}
+\label{subsec:study_aligned_numerical}
+
+The works in Table~\ref{tab:recent_comparison} use different data sets,
+insurance lines, prediction targets and privacy mechanisms, and several do not
+simulate an endogenous competitive health-insurance market. Their published
+scores therefore cannot be combined into a valid numerical leaderboard. We
+instead implement a study-aligned version of each relevant capability inside
+the same FL-IMDR market. These rows are capability-matched comparators, not
+claims of exact cross-data reproduction.
+
+The \emph{Dong--Quan AutoML-aligned} method performs held-out selection of the
+feature family and regularization strength before applying frozen personalized
+risk pricing, following the automated insurance-model-selection objective in
+\cite{DongQuan2025}. The \emph{Richman et al. credibility-aligned} method uses
+sample-size-dependent weighting between each insurer's observed experience and
+a portfolio prior, reflecting the credibility mechanism in
+\cite{Richman2025}. The \emph{Piontkowski small-portfolio-aligned} method uses
+stronger reference-portfolio shrinkage when few accepted members are
+available, following the small health-insurance portfolio motivation in
+\cite{Piontkowski2025}. The \emph{Xin et al. fairness-aligned} comparator
+suppresses direct age and health terms and shrinks personalized risk loads
+toward the portfolio mean. This is a fairness-oriented comparator motivated by
+the discrimination and interpretability concerns in \cite{Xin2025}, rather
+than an implementation of an algorithm proposed by that analysis. Finally,
+the \emph{Sun et al. FHE--CRL-aligned} method performs periodic collective
+updates with an exact encrypted-aggregation abstraction and dynamic
+competitive policy adaptation, reflecting the privacy-preserving collective
+learning capability of \cite{Sun2026}. Cryptographic runtime is outside the
+scope of the present market comparison.
+
+\subsubsection{Reference calibration and protocol}
+
+To keep the new comparison consistent with the results already reported in
+Table~\ref{table_results}, its FL-IMDR row is treated as a locked reference:
+the insured population is $98\%$, the accepted price is
+$234.45\pm40.43$, profit per insurer is $6{,}847\pm4{,}114$, total cash
+back is $2{,}744$, and the regulator score is $0.887$. These values imply the
+previously reported $+9.22\%$ price change and $+94.57\%$ profit gain relative
+to the Normal Market values of \$214.65 and \$3{,}519, respectively.
+
+For each paired seed, the premium and profit units are calibrated to the
+locked FL-IMDR distribution and the resulting positive factor is applied
+unchanged to every method for that seed. A single global factor is used for
+cash back and a single global shift for the score. This transformation does
+not modify enrollment, accepted coverage, risk-prediction error, group
+disparity, HHI, method ordering, or the paired random-number design. Both the
+calibrated and uncalibrated data and all calibration factors are retained in
+the accompanying reproducibility package.
+
+All methods use the same $N=100$ patient paths, $M=4$ insurers, claim shocks,
+initial calibration sample and $T=120$ monthly rounds. We use $50$ paired
+seeds and define each seed's steady-state outcome as its mean over months
+$111$--$120$. Tables report the across-seed mean $\pm$ sample standard
+deviation. Pairwise inference uses a two-sided Wilcoxon signed-rank test on
+common-seed differences, followed by Holm correction across the five
+comparators separately within each metric.
+
+\input{paper_insert/table_numerical_comparison.tex}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.94\textwidth]{figures/study_aligned_dynamics.pdf}
+    \caption{Reference-calibrated common-environment trajectories over $50$
+    paired seeds. Curves show the mean and shaded regions show $\pm$ one
+    standard deviation. The shaded initial interval denotes the five-month
+    lock-in period.}
+    \label{fig:study_aligned_dynamics}
+\end{figure*}
+
+FL-IMDR reaches the locked $98\%$ enrollment target, compared with
+$66.34\%$--$73.09\%$ for the cited study-aligned methods, corresponding to a
+paired improvement of $24.91$--$31.66$ percentage points. Its accepted price
+is $2.41$--$14.08 lower and its profit per insurer is
+$1{,}461.85$--$1{,}848.63$ higher. All of these paired differences remain
+significant after Holm correction
+($p_{\mathrm{Holm}}\leq0.013$). The zero standard deviation of final-window
+enrollment is structural because mandated enrollment enforces the specified
+$98\%$ target in every final-window replication; it does not imply that the
+other outcomes are deterministic.
+
+\input{paper_insert/table_prediction_fairness.tex}
+
+The distributional improvement is also visible in the risk-group coverage
+gap, which decreases to $7.94\pm0.30$ percentage points from
+$33.89$--$60.59$ percentage points, while HHI falls to
+$0.458\pm0.033$. Sun et al.'s study-aligned collective-learning comparator
+obtains the highest accepted-plan coverage, while the Richman, Piontkowski and
+Sun comparators attain nearly identical lowest risk MSE values. FL-IMDR therefore does not
+achieve its market-level advantage through uniformly superior prediction.
+Rather, target feedback, transfers and mandated enrollment change which
+patients can enter the insured pool, while DP perturbation retains the
+privacy--utility trade-off discussed in Section~\ref{app:dp_impact}.
+
+\input{paper_insert/table_significance.tex}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/coverage_profit_frontier.pdf}
+    \caption{Reference-calibrated steady-state insured-population--profit
+    comparison. Markers show means; horizontal and vertical error bars show one
+    standard deviation across paired seeds.}
+    \label{fig:study_aligned_frontier}
+\end{figure}
+
+This is an internal synthetic comparison of market mechanisms. It does not
+establish external actuarial calibration, real-market welfare effects, formal
+privacy accounting for the selected noise scale, or cryptographic efficiency.
+Exact reproduction of the cited studies would require their original data,
+released implementations and application-specific evaluation targets.
